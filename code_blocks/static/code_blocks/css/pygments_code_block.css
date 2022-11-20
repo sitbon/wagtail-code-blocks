@@ -1,0 +1,187 @@
+.block-code {
+    --font-family-sans: "Lato", sans-serif;
+    --font-family-mono: "Hack", monospace;
+    --font-size-heading: 90%;
+    --font-size-corner: 40%;
+    --font-size-code: 80%;
+    --border-width: 1px;
+    --border-type: solid;
+    --border-color: #33333320;
+    --border: var(--border-width) var(--border-type) var(--border-color);
+    --border-radius: 2px;
+    --line-height: 1.3;
+    --heading-bg-filter: invert(10%);
+    --scrollbar-size: .5em;
+    --scrollbar-border-radius: 8px;
+    --scrollbar-color: #7a808080;
+    --scrollbar-color-hover: #ff8c00e0;
+    --corner-color: #ff7a18a0;
+
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    margin: 10px 0 10px 0;
+    padding: 0;
+}
+
+.fit-content-width {
+    width: fit-content;
+}
+
+.resize-both {
+    resize: both;
+}
+
+.resize-vertical {
+    resize: vertical;
+}
+
+div.highlight {
+    position: relative;
+    z-index: 2;
+    border-radius: var(--border-radius);
+    padding-top: 10px;
+    padding-left: 10px;
+    max-width: 100%;
+    height: fit-content;
+    border: var(--border);
+}
+
+div.highlight.heading {
+    font-family: var(--font-family-sans);
+    font-weight: bold;
+    font-size: var(--font-size-heading);
+    display: block;
+    z-index: -1;
+    margin-bottom: -10px;
+    padding: 0 10px 10px 10px;
+    border: var(--border);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    filter: var(--heading-bg-filter);
+}
+
+div.highlight[rel]:not([rel=""]):before {
+    font-family: var(--font-family-sans);
+    font-style: normal;
+    font-weight: 700;
+    font-size: var(--font-size-corner);
+    content: attr(rel);
+    position: absolute;
+    top: .3rem;
+    right: .8rem;
+    padding: 0;
+    color: var(--corner-color) !important;
+    /*background-color: inherit;*/ /* <-- prevents text from showing behind letters */
+}
+
+.highlight [contenteditable]:focus {
+    outline: 0 solid transparent;
+}
+
+.highlight pre code {
+    text-align: left !important;
+    font-family: var(--font-family-mono);
+    background: none;
+    white-space: pre;
+    font-size: var(--font-size-code);
+    line-height: var(--line-height) !important;
+    padding: calc(15px - 5px - 10px) 20px calc(12px - 2px) calc(22px - 10px - 12px);
+}
+
+.highlight pre code, table.highlight {
+    display: block;
+}
+
+.highlight .scroller {
+    overflow: auto;
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    min-height: 25px;
+    min-width: 200px;
+}
+
+table.highlight pre code {
+    padding-left: 10px;
+}
+
+table.highlight, table.highlight td, table.highlight tr {
+    padding: 0;
+}
+
+table.highlight td.code {
+    min-width: 100%;
+}
+
+div.linenodiv {
+    padding-top: calc(15px - 5px);
+    padding-bottom: 12px;
+    padding-left: calc(17px - 10px);
+}
+
+span.linenos {
+    padding-left: 0 !important;
+    padding-right: 15px !important;
+}
+
+.highlight .scroller::-webkit-scrollbar-corner {
+    border-radius: var(--scrollbar-border-radius);
+}
+
+.highlight .scroller::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: var(--scrollbar-border-radius);
+}
+
+.highlight .scroller::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-color-hover);
+}
+
+.highlight .scroller::-webkit-scrollbar-track {
+    border-radius: var(--scrollbar-border-radius);
+}
+
+.highlight .scroller::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+    border-radius: var(--scrollbar-border-radius);
+}
+
+.highlight .scroller::-webkit-scrollbar-button {
+    display: none;
+}
+
+.highlight .scroller::-webkit-resizer {
+    display: none;
+}
+
+.highlight .resize_handle_rounded_10px {
+    content: "";
+    border-right: 2px solid darkorange;
+    opacity: 1;
+    position: absolute;
+    z-index: 2;
+    width: 14px;
+    height: 14px;
+    bottom: 1px;
+    right: 1px;
+    transform: rotate(45deg);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.highlight .resize_handle {
+    content: "";
+    border-right: calc(var(--border-width) * 2) var(--border-type) var(--border-color);
+    border-bottom: calc(var(--border-width) * 2) var(--border-type) var(--border-color);
+    opacity: 1;
+    position: absolute;
+    z-index: 2;
+    width: 10px;
+    height: 10px;
+    bottom: -1px;
+    right: -1px;
+    border-bottom-right-radius: var(--border-radius);
+    pointer-events: none;
+}
