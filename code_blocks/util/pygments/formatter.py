@@ -128,7 +128,6 @@ class CustomHtmlFormatter(HtmlFormatter):
             resize_div = '<div class="resize_handle"></div>'
 
         editable_attrs = ' contenteditable="true" spellcheck="false"' if self.editable else ''
-        light_dark_attrs = f"data-class-light="
 
         # in case you wonder about the seemingly redundant <div> here: since the
         # content in the other cell also is wrapped in a div, some browsers in

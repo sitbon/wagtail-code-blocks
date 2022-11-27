@@ -55,7 +55,7 @@ def pygments_css(styles="none"):
 
 @register.simple_tag
 def pygments_js(dynamic_css=True):
-    dynamic_css = "true" if dynamic_css else "false"
+    dynamic_css = str(dynamic_css).lower()
     dynamic_css = f'dynamic-css="{dynamic_css}"'
     css_static_base = f'css-static-base={static(CSS_LINK_BASE)}'
     highlight_class = f'highlight-class="{pygments_defaults.HIGHLIGHT_CLASS}"'
