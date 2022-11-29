@@ -2,6 +2,7 @@ import itertools
 from functools import lru_cache, cache
 
 from django.core.exceptions import ValidationError
+from django import forms
 from django.forms.utils import ErrorList
 from django.utils.safestring import mark_safe
 from wagtail import blocks
@@ -17,6 +18,10 @@ from ...util.pygments import defaults, formatter
 from .. import ValueBlock
 
 __all__ = "PygmentsCodeBlock",
+
+
+class HtmlFieldBlock(blocks.FieldBlock):
+    field = forms.CharField(widget=forms.HiddenInput)
 
 
 class PygmentsCodeBlock(blocks.StructBlock):
@@ -51,6 +56,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
     fit_content = blocks.BooleanBlock(required=False, default=False,
                                       help_text="Fit width to content (and make horizontally resizable if resizable).")
     editable = blocks.BooleanBlock(required=False, default=False)
+    html = HtmlFieldBlock(required=False, blank=True)
 
     MUTABLE_META_ATTRIBUTES = ["default", "disabled", "hidden"]
 
@@ -294,6 +300,9 @@ class PygmentsCodeBlock(blocks.StructBlock):
                         self.__error_field("language", "code"): ErrorList([error]),
                     })
 
+        value["html"] = ""
+        value["html"] = self.render_basic(value)
+
         return super().clean(value)
 
     @staticmethod
@@ -325,7 +334,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
     @staticmethod
     @lru_cache(maxsize=1024)
-    def render_code(
+    def highlight(
             language, style, style_dark, linenos, editable, resizable, fit_content, max_height,
             corner_text, show_corner_text, heading, code, block_class
     ):
@@ -334,13 +343,6 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
         if style_dark:
             style_dark = f"{cssclass}-{style_dark}"
-
-        settings_block_class = CodeBlockSettings.load().block_class
-
-        if settings_block_class:
-            block_class += " " + settings_block_class
-
-        block_class = block_class.strip()
 
         if language == "auto":
             lexer = guess_lexer(code)
@@ -368,23 +370,34 @@ class PygmentsCodeBlock(blocks.StructBlock):
         return highlight(code, lexer, html_formatter)
 
     def render_basic(self, value, context=None):
-        language = self.__value_or_hidden(value, "language")
-        style = self.__value_or_hidden(value, "style")
-        style_dark = self.__value_or_hidden(value, "style_dark")
-        linenos = self.__value_or_hidden(value, "linenos")
-        editable = self.__value_or_hidden(value, "editable")
-        resizable = self.__value_or_hidden(value, "resizable")
-        fit_content = self.__value_or_hidden(value, "fit_content")
-        max_height = self.__value_or_hidden(value, "max_height")
-        corner_text = self.__value_or_hidden(value, "corner_text")
-        show_corner_text = self.__value_or_hidden(value, "show_corner_text")
-        heading = self.__value_or_hidden(value, "heading")
-        code = self.__value_or_hidden(value, "code")
+        html = value.get("html", "")
 
-        html = PygmentsCodeBlock.render_code(
-            language, style, style_dark, linenos, editable, resizable, fit_content, max_height,
-            corner_text, show_corner_text, heading, code, self.meta.block_class
-        )
+        if not html:
+            language = self.__value_or_hidden(value, "language")
+            style = self.__value_or_hidden(value, "style")
+            style_dark = self.__value_or_hidden(value, "style_dark")
+            linenos = self.__value_or_hidden(value, "linenos")
+            editable = self.__value_or_hidden(value, "editable")
+            resizable = self.__value_or_hidden(value, "resizable")
+            fit_content = self.__value_or_hidden(value, "fit_content")
+            max_height = self.__value_or_hidden(value, "max_height")
+            corner_text = self.__value_or_hidden(value, "corner_text")
+            show_corner_text = self.__value_or_hidden(value, "show_corner_text")
+            heading = self.__value_or_hidden(value, "heading")
+            code = self.__value_or_hidden(value, "code")
+
+            block_class = self.meta.block_class
+            settings_block_class = CodeBlockSettings.load().block_class
+
+            if settings_block_class:
+                block_class += " " + settings_block_class
+
+            block_class = block_class.strip()
+
+            html = PygmentsCodeBlock.highlight(
+                language, style, style_dark, linenos, editable, resizable, fit_content, max_height,
+                corner_text, show_corner_text, heading, code, block_class
+            )
 
         # noinspection DjangoSafeString
         return mark_safe(html)
