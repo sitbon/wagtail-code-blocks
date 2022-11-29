@@ -63,8 +63,6 @@ class PygmentsCodeBlock(blocks.StructBlock):
     class Meta:
         icon = 'code'
         label_format = "Code [{language}]"
-        # Potential TODO: Use custom template that toggles between light and dark styles based on event listener.
-
         form_template = "code_blocks/admin/forms/pygments_code_block.html"
         classname = "block-code not-prose"
         default = {}
