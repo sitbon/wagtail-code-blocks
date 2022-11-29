@@ -58,7 +58,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
     editable = blocks.BooleanBlock(required=False, default=False)
     html = HtmlFieldBlock(required=False, blank=True)
 
-    MUTABLE_META_ATTRIBUTES = ["default", "disabled", "hidden"]
+    MUTABLE_META_ATTRIBUTES = ["default", "disabled", "hidden", "block_class"]
 
     class Meta:
         icon = 'code'
@@ -71,7 +71,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
     def __init__(self, *args, **kwds):
 
-        # Merge these keyword dicts with class meta defaults.
+        # Merge these keyword dicts with class meta defaults, instead of letting the superclass overwrite them.
         default = kwds.pop("default", {})
         disabled = kwds.pop("disabled", {})
         hidden = kwds.pop("hidden", {})
