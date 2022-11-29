@@ -11,7 +11,7 @@ __all__ = "PygmentsCodeBlockAdapter",
 
 
 class PygmentsCodeBlockAdapter(StructBlockAdapter):
-    js_constructor = 'web.apps.code_blocks.blocks.pygments.PygmentsCodeBlock'
+    js_constructor = 'code_blocks.blocks.pygments.PygmentsCodeBlock'
 
     CSS = ['code_blocks/css/admin/pygments_code_block.css']
     JS = ['code_blocks/js/admin/pygments_code_block.js']

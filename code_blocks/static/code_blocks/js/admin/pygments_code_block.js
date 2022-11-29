@@ -50,4 +50,4 @@ class PygmentsCodeBlockDefinition extends window.wagtailStreamField.blocks
     }
 }
 
-window.telepath.register('web.apps.code_blocks.blocks.pygments.PygmentsCodeBlock', PygmentsCodeBlockDefinition);
+window.telepath.register('code_blocks.blocks.pygments.PygmentsCodeBlock', PygmentsCodeBlockDefinition);
