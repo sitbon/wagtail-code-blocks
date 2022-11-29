@@ -31,7 +31,7 @@ def _get_default_languages():
     if not all(defaults):
         raise ValueError("One or more of CODE_BLOCK_LANGUAGES_DEFAULT are not supported by Pygments.")
 
-    return defaults + languages
+    return [("auto", "Automatic")] + defaults + languages
 
 
 def _get_default_styles():

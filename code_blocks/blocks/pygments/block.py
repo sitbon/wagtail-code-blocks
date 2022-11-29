@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 from wagtail import blocks
 
 from pygments import highlight
-from pygments.lexers import get_lexer_by_name
+from pygments.lexers import get_lexer_by_name, guess_lexer
 # noinspection PyProtectedMember
 from wagtail.blocks.struct_block import StructBlockValidationError
 
@@ -51,7 +51,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
                                       help_text="Fit width to content (and make horizontally resizable if resizable).")
     editable = blocks.BooleanBlock(required=False, default=False)
 
-    # MUTABLE_META_ATTRIBUTES = ["hidden"]  # TODO: Determine whether this is necesary.
+    MUTABLE_META_ATTRIBUTES = ["cache"]
 
     class Meta:
         icon = 'code'
@@ -275,6 +275,24 @@ class PygmentsCodeBlock(blocks.StructBlock):
                 self.__error_field("editable", "language"): ErrorList([error]),
             })
 
+        if language == "auto":
+            code = self.__value_or_hidden(value, "code")
+            lexer = guess_lexer(code)
+
+            for alias in lexer.__class__.aliases:
+                if alias in defaults.CODE_BLOCK_LANGUAGES:
+                    language = lexer.__class__.aliases[0]
+                    self.language = value["language"] = language
+                    break
+                else:
+                    error = ValidationError(
+                        f"Auto-detected language {lexer.__class__.name} is not present in CODE_BLOCK_LANGUAGES."
+                    )
+
+                    raise StructBlockValidationError({
+                        self.__error_field("language", "code"): ErrorList([error]),
+                    })
+
         return super().clean(value)
 
     def render_basic(self, value, context=None):
@@ -306,7 +324,11 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
         block_class = block_class.strip()
 
-        lexer = get_lexer_by_name(language)
+        if language == "auto":
+            lexer = guess_lexer(code)
+            language = lexer.__class__.name
+        else:
+            lexer = get_lexer_by_name(language)
 
         title = corner_text or (language.upper() if show_corner_text else "")
 
