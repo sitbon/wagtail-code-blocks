@@ -56,7 +56,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
     fit_content = blocks.BooleanBlock(required=False, default=False,
                                       help_text="Fit width to content (and make horizontally resizable if resizable).")
     editable = blocks.BooleanBlock(required=False, default=False)
-    html = HtmlFieldBlock(required=False, blank=True)
+    html = HtmlFieldBlock()
 
     MUTABLE_META_ATTRIBUTES = ["default", "disabled", "hidden", "block_class"]
 
