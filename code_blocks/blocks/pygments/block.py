@@ -12,6 +12,8 @@ from pygments.lexers import get_lexer_by_name, guess_lexer
 # noinspection PyProtectedMember
 from wagtail.blocks.struct_block import StructBlockValidationError
 
+from current_request.middlware.request import CurrentRequestMiddleware
+
 from ...models import CodeBlockSettings
 from ...util.pygments import defaults, formatter
 
@@ -385,7 +387,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
             code = self.__value_or_hidden(value, "code")
 
             block_class = self.meta.block_class
-            settings_block_class = CodeBlockSettings.load().block_class
+            settings_block_class = CodeBlockSettings.for_request(CurrentRequestMiddleware.current_request).block_class
 
             if settings_block_class:
                 block_class += " " + settings_block_class
