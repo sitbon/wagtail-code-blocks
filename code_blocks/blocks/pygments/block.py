@@ -67,6 +67,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
         label_format = "Code [{language}]"
         form_template = "code_blocks/admin/forms/pygments_code_block.html"
         classname = "block-code not-prose"
+        form_classname = "code-block-form"
         default = {}
         disabled = {}
         hidden = {}
