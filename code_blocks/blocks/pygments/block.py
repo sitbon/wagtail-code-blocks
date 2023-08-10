@@ -12,7 +12,7 @@ from pygments.lexers import get_lexer_by_name, guess_lexer
 # noinspection PyProtectedMember
 from wagtail.blocks.struct_block import StructBlockValidationError
 
-from web.base.middleware import CurrentRequestMiddleware
+from web.base.middleware.request import CurrentRequestMiddleware
 
 from ...models import CodeBlockSettings
 from ...util.pygments import defaults, formatter
