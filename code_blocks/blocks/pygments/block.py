@@ -78,6 +78,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
         default = kwds.pop("default", {})
         disabled = kwds.pop("disabled", {})
         hidden = kwds.pop("hidden", {})
+        block_class = kwds.pop("block_class", "")
 
         super().__init__(*args, **kwds)
 
@@ -87,7 +88,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
         self.__configure()
 
-        self.meta.block_class = getattr(self.meta, "block_class", "")
+        self.meta.block_class = block_class or getattr(self.meta, "block_class", "")
 
     def __configure(self):
         # TODO: Type check disabled and hidden.
