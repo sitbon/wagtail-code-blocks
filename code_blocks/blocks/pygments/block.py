@@ -9,12 +9,8 @@ from wagtail import blocks
 
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name, guess_lexer
-# noinspection PyProtectedMember
 from wagtail.blocks.struct_block import StructBlockValidationError
 
-from web.base.middleware.request import CurrentRequestMiddleware
-
-from ...models import CodeBlockSettings
 from ...util.pygments.formatter import CustomHtmlFormatter
 from ...util.pygments.defaults import (
     CODE_BLOCK_PYGMENTS_LANGUAGES,
@@ -33,7 +29,7 @@ class HtmlFieldBlock(blocks.FieldBlock):
 
 
 class PygmentsCodeBlock(blocks.StructBlock):
-    """A fully-featured Pygments-powered code block.
+    """A Pygments-powered code block.
 
     TODO: Arrange form via form_template:
     https://docs.wagtail.org/en/stable/advanced_topics/customisation/streamfield_blocks.html#custom-editing-interfaces-for-structblock
@@ -397,12 +393,6 @@ class PygmentsCodeBlock(blocks.StructBlock):
             code = self.__value_or_hidden(value, "code")
 
             block_class = self.meta.block_class
-            settings_block_class = CodeBlockSettings.for_request(CurrentRequestMiddleware.current_request).block_class
-
-            if settings_block_class:
-                block_class += " " + settings_block_class
-
-            block_class = block_class.strip()
 
             html = PygmentsCodeBlock.highlight(
                 language, style, style_dark, linenos, editable, resizable, fit_content, max_height,
