@@ -23,6 +23,7 @@
 .highlight-stata-dark .cs { color: #777777; font-style: italic } /* Comment.Special */
 .highlight-stata-dark .gd { color: #cccccc } /* Generic.Deleted */
 .highlight-stata-dark .ge { color: #cccccc } /* Generic.Emph */
+.highlight-stata-dark .ges { color: #cccccc } /* Generic.EmphStrong */
 .highlight-stata-dark .gr { color: #cccccc } /* Generic.Error */
 .highlight-stata-dark .gh { color: #cccccc } /* Generic.Heading */
 .highlight-stata-dark .gi { color: #cccccc } /* Generic.Inserted */

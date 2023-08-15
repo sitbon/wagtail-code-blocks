@@ -20,6 +20,7 @@
 .highlight-inkpot .cs { color: #808bed } /* Comment.Special */
 .highlight-inkpot .gd { color: #A00000 } /* Generic.Deleted */
 .highlight-inkpot .ge { font-style: italic } /* Generic.Emph */
+.highlight-inkpot .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-inkpot .gr { color: #FF0000 } /* Generic.Error */
 .highlight-inkpot .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-inkpot .gi { color: #00A000 } /* Generic.Inserted */

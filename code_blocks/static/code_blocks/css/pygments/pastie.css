@@ -16,6 +16,7 @@
 .highlight-pastie .cs { color: #cc0000; font-weight: bold; background-color: #fff0f0 } /* Comment.Special */
 .highlight-pastie .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
 .highlight-pastie .ge { font-style: italic } /* Generic.Emph */
+.highlight-pastie .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-pastie .gr { color: #aa0000 } /* Generic.Error */
 .highlight-pastie .gh { color: #333333 } /* Generic.Heading */
 .highlight-pastie .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */

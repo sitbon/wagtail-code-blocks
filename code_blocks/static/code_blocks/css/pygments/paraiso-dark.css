@@ -20,6 +20,7 @@
 .highlight-paraiso-dark .cs { color: #776e71 } /* Comment.Special */
 .highlight-paraiso-dark .gd { color: #ef6155 } /* Generic.Deleted */
 .highlight-paraiso-dark .ge { font-style: italic } /* Generic.Emph */
+.highlight-paraiso-dark .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-paraiso-dark .gh { color: #e7e9db; font-weight: bold } /* Generic.Heading */
 .highlight-paraiso-dark .gi { color: #48b685 } /* Generic.Inserted */
 .highlight-paraiso-dark .gp { color: #776e71; font-weight: bold } /* Generic.Prompt */

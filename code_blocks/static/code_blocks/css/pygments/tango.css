@@ -22,6 +22,7 @@
 .highlight-tango .cs { color: #8f5902; font-style: italic } /* Comment.Special */
 .highlight-tango .gd { color: #a40000 } /* Generic.Deleted */
 .highlight-tango .ge { color: #000000; font-style: italic } /* Generic.Emph */
+.highlight-tango .ges { color: #000000; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-tango .gr { color: #ef2929 } /* Generic.Error */
 .highlight-tango .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-tango .gi { color: #00A000 } /* Generic.Inserted */

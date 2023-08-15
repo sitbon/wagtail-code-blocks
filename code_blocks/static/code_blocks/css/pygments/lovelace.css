@@ -18,6 +18,7 @@
 .highlight-lovelace .cs { color: #888888; font-style: italic } /* Comment.Special */
 .highlight-lovelace .gd { color: #c02828 } /* Generic.Deleted */
 .highlight-lovelace .ge { font-style: italic } /* Generic.Emph */
+.highlight-lovelace .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-lovelace .gr { color: #c02828 } /* Generic.Error */
 .highlight-lovelace .gh { color: #666666 } /* Generic.Heading */
 .highlight-lovelace .gi { color: #388038 } /* Generic.Inserted */

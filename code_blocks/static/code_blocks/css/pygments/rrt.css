@@ -23,6 +23,7 @@
 .highlight-rrt .cs { color: #00ff00 } /* Comment.Special */
 .highlight-rrt .gd { color: #dddddd } /* Generic.Deleted */
 .highlight-rrt .ge { color: #dddddd } /* Generic.Emph */
+.highlight-rrt .ges { color: #dddddd } /* Generic.EmphStrong */
 .highlight-rrt .gr { color: #dddddd } /* Generic.Error */
 .highlight-rrt .gh { color: #dddddd } /* Generic.Heading */
 .highlight-rrt .gi { color: #dddddd } /* Generic.Inserted */

@@ -16,6 +16,7 @@
 .highlight-autumn .cs { color: #0000aa; font-style: italic } /* Comment.Special */
 .highlight-autumn .gd { color: #aa0000 } /* Generic.Deleted */
 .highlight-autumn .ge { font-style: italic } /* Generic.Emph */
+.highlight-autumn .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-autumn .gr { color: #aa0000 } /* Generic.Error */
 .highlight-autumn .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-autumn .gi { color: #00aa00 } /* Generic.Inserted */

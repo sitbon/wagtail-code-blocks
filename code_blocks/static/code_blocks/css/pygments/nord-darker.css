@@ -23,6 +23,7 @@
 .highlight-nord-darker .cs { color: #616e87; font-style: italic } /* Comment.Special */
 .highlight-nord-darker .gd { color: #bf616a } /* Generic.Deleted */
 .highlight-nord-darker .ge { color: #d8dee9; font-style: italic } /* Generic.Emph */
+.highlight-nord-darker .ges { color: #d8dee9 } /* Generic.EmphStrong */
 .highlight-nord-darker .gr { color: #bf616a } /* Generic.Error */
 .highlight-nord-darker .gh { color: #88c0d0; font-weight: bold } /* Generic.Heading */
 .highlight-nord-darker .gi { color: #a3be8c } /* Generic.Inserted */

@@ -18,6 +18,7 @@
 .highlight-sas .cs { color: #008800; font-style: italic } /* Comment.Special */
 .highlight-sas .gd { color: #2c2cff } /* Generic.Deleted */
 .highlight-sas .ge { color: #008800 } /* Generic.Emph */
+.highlight-sas .ges { color: #2c2cff } /* Generic.EmphStrong */
 .highlight-sas .gr { color: #d30202 } /* Generic.Error */
 .highlight-sas .gh { color: #2c2cff } /* Generic.Heading */
 .highlight-sas .gi { color: #2c2cff } /* Generic.Inserted */

@@ -22,6 +22,7 @@
 .highlight-material .cs { color: #546E7A; font-style: italic } /* Comment.Special */
 .highlight-material .gd { color: #FF5370 } /* Generic.Deleted */
 .highlight-material .ge { color: #89DDFF } /* Generic.Emph */
+.highlight-material .ges { color: #FFCB6B } /* Generic.EmphStrong */
 .highlight-material .gr { color: #FF5370 } /* Generic.Error */
 .highlight-material .gh { color: #C3E88D } /* Generic.Heading */
 .highlight-material .gi { color: #C3E88D } /* Generic.Inserted */

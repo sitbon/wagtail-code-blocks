@@ -17,6 +17,7 @@
 .highlight-colorful .cs { color: #cc0000; font-weight: bold } /* Comment.Special */
 .highlight-colorful .gd { color: #A00000 } /* Generic.Deleted */
 .highlight-colorful .ge { font-style: italic } /* Generic.Emph */
+.highlight-colorful .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-colorful .gr { color: #FF0000 } /* Generic.Error */
 .highlight-colorful .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-colorful .gi { color: #00A000 } /* Generic.Inserted */

@@ -14,6 +14,7 @@
 .highlight-bw .c1 { font-style: italic } /* Comment.Single */
 .highlight-bw .cs { font-style: italic } /* Comment.Special */
 .highlight-bw .ge { font-style: italic } /* Generic.Emph */
+.highlight-bw .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-bw .gh { font-weight: bold } /* Generic.Heading */
 .highlight-bw .gp { font-weight: bold } /* Generic.Prompt */
 .highlight-bw .gs { font-weight: bold } /* Generic.Strong */

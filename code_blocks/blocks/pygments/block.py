@@ -15,7 +15,13 @@ from wagtail.blocks.struct_block import StructBlockValidationError
 from web.base.middleware.request import CurrentRequestMiddleware
 
 from ...models import CodeBlockSettings
-from ...util.pygments import defaults, formatter
+from ...util.pygments.formatter import CustomHtmlFormatter
+from ...util.pygments.defaults import (
+    CODE_BLOCK_PYGMENTS_LANGUAGES,
+    CODE_BLOCK_PYGMENTS_STYLES,
+    CODE_BLOCK_PYGMENTS_LINENO_CHOICES,
+    CODE_BLOCK_PYGMENTS_HIGHLIGHT_CLASS
+)
 
 from .. import ValueBlock
 
@@ -32,32 +38,26 @@ class PygmentsCodeBlock(blocks.StructBlock):
     TODO: Arrange form via form_template:
     https://docs.wagtail.org/en/stable/advanced_topics/customisation/streamfield_blocks.html#custom-editing-interfaces-for-structblock
 
-    TODO: For editable:
-        - Add a reset button.
-        - Disallow when linenos is inline.
-        - Add javascript to update line numbers when code is edited.
-        - Disallow linenos + editable for now.
-        - Either highlight the edits using backend, or only allow editable for plain text.
-            - Doing only plain text for now.
-
-    TODO: Add a "Copy to clipboard" button.
+    TODO:
+        - Add a "Copy to clipboard" button.
+        - Add a reset button for editable.
     """
-    language = blocks.ChoiceBlock(choices=defaults.CODE_BLOCK_LANGUAGES.items(),
-                                  default=defaults.CODE_BLOCK_LANGUAGES_DEFAULT[0])
-    style = blocks.ChoiceBlock(choices=defaults.CODE_BLOCK_STYLES.items(),
-                               default=next(iter(defaults.CODE_BLOCK_STYLES.keys())))
-    style_dark = blocks.ChoiceBlock(choices=defaults.CODE_BLOCK_STYLES.items(),
+    language = blocks.ChoiceBlock(choices=CODE_BLOCK_PYGMENTS_LANGUAGES.items(),
+                                  default=next(iter(CODE_BLOCK_PYGMENTS_LANGUAGES.keys())))
+    style = blocks.ChoiceBlock(choices=CODE_BLOCK_PYGMENTS_STYLES.items(),
+                               default=next(iter(CODE_BLOCK_PYGMENTS_STYLES.keys())))
+    style_dark = blocks.ChoiceBlock(choices=CODE_BLOCK_PYGMENTS_STYLES.items(),
                                     required=False, )
     heading = blocks.CharBlock(required=False, default="")
-    code = blocks.TextBlock(form_classname="code-block-code")
     corner_text = blocks.CharBlock(required=False, default="", help_text="Defaults to language name.")
     show_corner_text = blocks.BooleanBlock(required=False, default=True)
-    linenos = blocks.ChoiceBlock(choices=defaults.LINENO_CHOICES, required=False)
+    linenos = blocks.ChoiceBlock(choices=CODE_BLOCK_PYGMENTS_LINENO_CHOICES, required=False)
     max_height = blocks.IntegerBlock(required=False, default=None, min_value=40)
     resizable = blocks.BooleanBlock(required=False, default=False)
     fit_content = blocks.BooleanBlock(required=False, default=False,
                                       help_text="Fit width to content (and make horizontally resizable if resizable).")
     editable = blocks.BooleanBlock(required=False, default=False)
+    code = blocks.TextBlock(form_classname="code-block-code")
     html = HtmlFieldBlock()
 
     MUTABLE_META_ATTRIBUTES = ["default", "disabled", "hidden", "block_class"]
@@ -68,9 +68,14 @@ class PygmentsCodeBlock(blocks.StructBlock):
         form_template = "code_blocks/admin/forms/pygments_code_block.html"
         classname = "block-code not-prose"
         form_classname = "code-block-form struct-block"
-        default = {}
+        default = {
+            "show_corner_text": False,
+        }
         disabled = {}
-        hidden = {}
+        hidden = {
+            "editable": False,
+            "linenos": None,
+        }
 
     def __init__(self, *args, **kwds):
 
@@ -79,6 +84,8 @@ class PygmentsCodeBlock(blocks.StructBlock):
         disabled = kwds.pop("disabled", {})
         hidden = kwds.pop("hidden", {})
         block_class = kwds.pop("block_class", "")
+        languages = kwds.pop("languages", [])
+        styles = kwds.pop("styles", [])
 
         super().__init__(*args, **kwds)
 
@@ -86,12 +93,13 @@ class PygmentsCodeBlock(blocks.StructBlock):
         self.meta.disabled.update(disabled)
         self.meta.hidden.update(hidden)
 
+        self.meta.block_class = block_class or getattr(self.meta, "block_class", "")
+        self.meta.languages = languages or getattr(self.meta, "languages", [])
+        self.meta.styles = styles or getattr(self.meta, "styles", [])
+
         self.__configure()
 
-        self.meta.block_class = block_class or getattr(self.meta, "block_class", "")
-
     def __configure(self):
-        # TODO: Type check disabled and hidden.
         disabled = dict(self.meta.disabled)
         default = self.meta.default
         hidden = self.meta.hidden
@@ -122,17 +130,17 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
         if language:
             languages = [language]
-        elif "language" in default and default["language"] not in defaults.CODE_BLOCK_LANGUAGES:
+        elif "language" in default and default["language"] not in CODE_BLOCK_PYGMENTS_LANGUAGES:
             raise ValueError(f"Invalid default language: {default['language']}")
 
         language_choices = {}
         default_language = None
 
         for language in languages:
-            if language not in defaults.CODE_BLOCK_LANGUAGES:
+            if language not in CODE_BLOCK_PYGMENTS_LANGUAGES:
                 raise ValueError(f"Invalid language: {language}")
 
-            language_choices[language] = defaults.CODE_BLOCK_LANGUAGES[language]
+            language_choices[language] = CODE_BLOCK_PYGMENTS_LANGUAGES[language]
 
             if not default_language:
                 default_language = language
@@ -157,7 +165,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
         if style:
             styles = [style]
-        elif "style" in default and default["style"] not in defaults.CODE_BLOCK_STYLES:
+        elif "style" in default and default["style"] not in CODE_BLOCK_PYGMENTS_STYLES:
             raise ValueError(f"Invalid default style: {default['style']}")
 
         style_choices = {}
@@ -165,10 +173,10 @@ class PygmentsCodeBlock(blocks.StructBlock):
         default_style_dark = style_dark
 
         for style in styles:
-            if style not in defaults.CODE_BLOCK_STYLES:
+            if style not in CODE_BLOCK_PYGMENTS_STYLES:
                 raise ValueError(f"Invalid style: {style}")
 
-            style_choices[style] = defaults.CODE_BLOCK_STYLES[style]
+            style_choices[style] = CODE_BLOCK_PYGMENTS_STYLES[style]
 
             if not default_style:
                 default_style = style
@@ -177,7 +185,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
                 default_style_dark = style
 
         # Allow valid dark styles outside of style_choices.
-        if style_dark and style_dark not in defaults.CODE_BLOCK_STYLES:
+        if style_dark and style_dark not in CODE_BLOCK_PYGMENTS_STYLES:
             raise ValueError(f"Invalid style_dark: {style_dark}")
 
         if len(style_choices) == 1:
@@ -289,13 +297,13 @@ class PygmentsCodeBlock(blocks.StructBlock):
             lexer = guess_lexer(code)
 
             for alias in lexer.__class__.aliases:
-                if alias in defaults.CODE_BLOCK_LANGUAGES:
+                if alias in CODE_BLOCK_PYGMENTS_LANGUAGES:
                     language = lexer.__class__.aliases[0]
                     self.language = value["language"] = language
                     break
                 else:
                     error = ValidationError(
-                        f"Auto-detected language {lexer.__class__.name} is not present in CODE_BLOCK_LANGUAGES."
+                        f"Auto-detected language {lexer.__class__.name} is not present in CODE_BLOCK_PYGMENTS_LANGUAGES."
                     )
 
                     raise StructBlockValidationError({
@@ -313,7 +321,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
             heading, title, block_class, cssclass, colorclass, style,
             style_dark, linenos, max_height, resizable, fit_content, editable
     ):
-        return formatter.CustomHtmlFormatter(
+        return CustomHtmlFormatter(
             heading=heading,
             title=title,
             block_class=block_class,
@@ -340,7 +348,7 @@ class PygmentsCodeBlock(blocks.StructBlock):
             language, style, style_dark, linenos, editable, resizable, fit_content, max_height,
             corner_text, show_corner_text, heading, code, block_class
     ):
-        cssclass = defaults.HIGHLIGHT_CLASS
+        cssclass = CODE_BLOCK_PYGMENTS_HIGHLIGHT_CLASS
         colorclass = f"{cssclass}-{style}"
 
         if style_dark:
@@ -403,4 +411,3 @@ class PygmentsCodeBlock(blocks.StructBlock):
 
         # noinspection DjangoSafeString
         return mark_safe(html)
-

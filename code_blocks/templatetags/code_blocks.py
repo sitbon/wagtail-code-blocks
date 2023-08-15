@@ -35,7 +35,7 @@ def pygments_css(styles="none"):
     ]
 
     if styles == "all":
-        styles = pygments_defaults.CODE_BLOCK_STYLES.keys()
+        styles = pygments_defaults.CODE_BLOCK_PYGMENTS_STYLES.keys()
 
     elif styles == "none":
         styles = []
@@ -44,7 +44,7 @@ def pygments_css(styles="none"):
         styles = map(str.split, styles.split(","))
 
     for style in styles:
-        if style not in pygments_defaults.CODE_BLOCK_STYLES:
+        if style not in pygments_defaults.CODE_BLOCK_PYGMENTS_STYLES:
             raise ValueError(f"Invalid pygments code block style '{style}'")
 
         links.append((f"pygments/{style}.css", f"pygments-style-{style}"))
@@ -58,7 +58,7 @@ def pygments_js(dynamic_css=True):
     dynamic_css = str(dynamic_css).lower()
     dynamic_css = f'dynamic-css="{dynamic_css}"'
     css_static_base = f'css-static-base={static(CSS_LINK_BASE)}'
-    highlight_class = f'highlight-class="{pygments_defaults.HIGHLIGHT_CLASS}"'
+    highlight_class = f'highlight-class="{pygments_defaults.CODE_BLOCK_PYGMENTS_HIGHLIGHT_CLASS}"'
     src = static(JS_BASE + 'pygments_code_block.js')
 
     return mark_safe(

@@ -17,12 +17,13 @@
 .highlight-native .p { color: #d0d0d0 } /* Punctuation */
 .highlight-native .ch { color: #ababab; font-style: italic } /* Comment.Hashbang */
 .highlight-native .cm { color: #ababab; font-style: italic } /* Comment.Multiline */
-.highlight-native .cp { color: #cd2828; font-weight: bold } /* Comment.Preproc */
+.highlight-native .cp { color: #ff3a3a; font-weight: bold } /* Comment.Preproc */
 .highlight-native .cpf { color: #ababab; font-style: italic } /* Comment.PreprocFile */
 .highlight-native .c1 { color: #ababab; font-style: italic } /* Comment.Single */
 .highlight-native .cs { color: #e50808; font-weight: bold; background-color: #520000 } /* Comment.Special */
 .highlight-native .gd { color: #d22323 } /* Generic.Deleted */
 .highlight-native .ge { color: #d0d0d0; font-style: italic } /* Generic.Emph */
+.highlight-native .ges { color: #d0d0d0; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-native .gr { color: #d22323 } /* Generic.Error */
 .highlight-native .gh { color: #ffffff; font-weight: bold } /* Generic.Heading */
 .highlight-native .gi { color: #589819 } /* Generic.Inserted */

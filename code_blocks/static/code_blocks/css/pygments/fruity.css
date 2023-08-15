@@ -23,6 +23,7 @@
 .highlight-fruity .cs { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Special */
 .highlight-fruity .gd { color: #ffffff } /* Generic.Deleted */
 .highlight-fruity .ge { color: #ffffff } /* Generic.Emph */
+.highlight-fruity .ges { color: #ffffff } /* Generic.EmphStrong */
 .highlight-fruity .gr { color: #ffffff } /* Generic.Error */
 .highlight-fruity .gh { color: #ffffff; font-weight: bold } /* Generic.Heading */
 .highlight-fruity .gi { color: #ffffff } /* Generic.Inserted */

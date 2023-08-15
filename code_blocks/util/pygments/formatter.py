@@ -89,9 +89,9 @@ class CustomHtmlFormatter(HtmlFormatter):
 
             if nocls:
                 if special_line:
-                    style = ' style="%s"' % self._linenos_special_style
+                    style = ' style="%s"' % self._linenos_special_style  # noqa
                 else:
-                    style = ' style="%s"' % self._linenos_style
+                    style = ' style="%s"' % self._linenos_style  # noqa
             else:
                 if special_line:
                     style = ' class="special"'
@@ -106,7 +106,7 @@ class CustomHtmlFormatter(HtmlFormatter):
         ls = '\n'.join(lines)
 
         # If a filename was specified, we can't put it into the code table as it
-        # would misalign the line numbers. Hence we emit a separate row for it.
+        # would misalign the line numbers. Hence, we emit a separate row for it.
         filename_tr = ""
         if self.filename:
             filename_tr = (
@@ -133,8 +133,8 @@ class CustomHtmlFormatter(HtmlFormatter):
         # content in the other cell also is wrapped in a div, some browsers in
         # some configurations seem to mess up the formatting...
         yield 0, (f'{resize_div}<table class="{table_class} {self.cssclass}-table"{table_style}>' + filename_tr +
-            f'<tr><td class="linenos"><div class="linenodiv"><pre{editable_attrs}>' +
-            ls + '</pre></div></td><td class="code">')
+                  f'<tr><td class="linenos"><div class="linenodiv"><pre{editable_attrs}>' +
+                  ls + '</pre></div></td><td class="code">')
         yield 0, '<div>'
         yield 0, dummyoutfile.getvalue()
         yield 0, '</div>'

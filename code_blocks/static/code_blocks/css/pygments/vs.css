@@ -15,6 +15,7 @@
 .highlight-vs .c1 { color: #008000 } /* Comment.Single */
 .highlight-vs .cs { color: #008000 } /* Comment.Special */
 .highlight-vs .ge { font-style: italic } /* Generic.Emph */
+.highlight-vs .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-vs .gh { font-weight: bold } /* Generic.Heading */
 .highlight-vs .gp { font-weight: bold } /* Generic.Prompt */
 .highlight-vs .gs { font-weight: bold } /* Generic.Strong */

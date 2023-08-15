@@ -16,6 +16,7 @@
 .highlight-perldoc .cs { color: #8B008B; font-weight: bold } /* Comment.Special */
 .highlight-perldoc .gd { color: #aa0000 } /* Generic.Deleted */
 .highlight-perldoc .ge { font-style: italic } /* Generic.Emph */
+.highlight-perldoc .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-perldoc .gr { color: #aa0000 } /* Generic.Error */
 .highlight-perldoc .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-perldoc .gi { color: #00aa00 } /* Generic.Inserted */

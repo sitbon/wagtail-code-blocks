@@ -23,6 +23,7 @@
 .highlight-nord .cs { color: #616e87; font-style: italic } /* Comment.Special */
 .highlight-nord .gd { color: #bf616a } /* Generic.Deleted */
 .highlight-nord .ge { color: #d8dee9; font-style: italic } /* Generic.Emph */
+.highlight-nord .ges { color: #d8dee9; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-nord .gr { color: #bf616a } /* Generic.Error */
 .highlight-nord .gh { color: #88c0d0; font-weight: bold } /* Generic.Heading */
 .highlight-nord .gi { color: #a3be8c } /* Generic.Inserted */

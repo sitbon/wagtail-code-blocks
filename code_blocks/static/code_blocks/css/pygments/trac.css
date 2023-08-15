@@ -17,6 +17,7 @@
 .highlight-trac .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
 .highlight-trac .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
 .highlight-trac .ge { font-style: italic } /* Generic.Emph */
+.highlight-trac .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-trac .gr { color: #aa0000 } /* Generic.Error */
 .highlight-trac .gh { color: #999999 } /* Generic.Heading */
 .highlight-trac .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */

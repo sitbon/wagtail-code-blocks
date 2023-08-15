@@ -23,6 +23,7 @@
 .highlight-one-dark .cs { color: #7F848E } /* Comment.Special */
 .highlight-one-dark .gd { color: #ABB2BF } /* Generic.Deleted */
 .highlight-one-dark .ge { color: #ABB2BF } /* Generic.Emph */
+.highlight-one-dark .ges { color: #ABB2BF } /* Generic.EmphStrong */
 .highlight-one-dark .gr { color: #ABB2BF } /* Generic.Error */
 .highlight-one-dark .gh { color: #ABB2BF } /* Generic.Heading */
 .highlight-one-dark .gi { color: #ABB2BF } /* Generic.Inserted */

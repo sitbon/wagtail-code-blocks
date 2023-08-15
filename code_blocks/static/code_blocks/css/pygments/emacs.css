@@ -17,6 +17,7 @@
 .highlight-emacs .cs { color: #008800; font-weight: bold } /* Comment.Special */
 .highlight-emacs .gd { color: #A00000 } /* Generic.Deleted */
 .highlight-emacs .ge { font-style: italic } /* Generic.Emph */
+.highlight-emacs .ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-emacs .gr { color: #FF0000 } /* Generic.Error */
 .highlight-emacs .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-emacs .gi { color: #00A000 } /* Generic.Inserted */

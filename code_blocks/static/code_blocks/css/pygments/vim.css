@@ -23,6 +23,7 @@
 .highlight-vim .cs { color: #cd0000; font-weight: bold } /* Comment.Special */
 .highlight-vim .gd { color: #cd0000 } /* Generic.Deleted */
 .highlight-vim .ge { color: #cccccc; font-style: italic } /* Generic.Emph */
+.highlight-vim .ges { color: #cccccc; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-vim .gr { color: #FF0000 } /* Generic.Error */
 .highlight-vim .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight-vim .gi { color: #00cd00 } /* Generic.Inserted */

@@ -23,6 +23,7 @@
 .highlight-solarized-dark .cs { color: #586e75; font-style: italic } /* Comment.Special */
 .highlight-solarized-dark .gd { color: #dc322f } /* Generic.Deleted */
 .highlight-solarized-dark .ge { color: #839496; font-style: italic } /* Generic.Emph */
+.highlight-solarized-dark .ges { color: #839496; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
 .highlight-solarized-dark .gr { color: #dc322f } /* Generic.Error */
 .highlight-solarized-dark .gh { color: #839496; font-weight: bold } /* Generic.Heading */
 .highlight-solarized-dark .gi { color: #859900 } /* Generic.Inserted */

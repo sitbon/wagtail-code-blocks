@@ -23,6 +23,7 @@
 .highlight-zenburn .cs { color: #dfdfdf; font-weight: bold; font-style: italic } /* Comment.Special */
 .highlight-zenburn .gd { color: #c3bf9f; font-weight: bold; background-color: #313c36 } /* Generic.Deleted */
 .highlight-zenburn .ge { color: #ffffff; font-weight: bold } /* Generic.Emph */
+.highlight-zenburn .ges { color: #ecbcbc; font-weight: bold } /* Generic.EmphStrong */
 .highlight-zenburn .gr { color: #ecbcbc; font-weight: bold } /* Generic.Error */
 .highlight-zenburn .gh { color: #efefef; font-weight: bold } /* Generic.Heading */
 .highlight-zenburn .gi { color: #709080; font-weight: bold; background-color: #313c36 } /* Generic.Inserted */

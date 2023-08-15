@@ -27,7 +27,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options["list"]:
             print("Available styles:")
-            for style, name in defaults.CODE_BLOCK_STYLES:
+            for style, name in defaults.CODE_BLOCK_PYGMENTS_STYLES.items():
                 print(name.ljust(20), style)
             return 0
 
@@ -47,10 +47,10 @@ class Command(BaseCommand):
                 if file.endswith(".css"):
                     os.remove(os.path.join(css_dir, file))
 
-        styles = options["styles"] or defaults.CODE_BLOCK_STYLES
+        styles = options["styles"] or defaults.CODE_BLOCK_PYGMENTS_STYLES
 
         for style_name in styles:
-            if style_name not in defaults.CODE_BLOCK_STYLES:
+            if style_name not in defaults.CODE_BLOCK_PYGMENTS_STYLES:
                 print(f"Invalid style '{style_name}'", file=sys.stderr)
                 continue
 
@@ -67,7 +67,7 @@ class Command(BaseCommand):
                     "pygmentize",
                     "-S", style_name,
                     "-f", "html",
-                    "-a", f".{defaults.HIGHLIGHT_CLASS}-{style_name}"
+                    "-a", f".{defaults.CODE_BLOCK_PYGMENTS_HIGHLIGHT_CLASS}-{style_name}"
                 ]
 
                 error = pygments_main(args)

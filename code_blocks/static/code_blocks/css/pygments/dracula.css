@@ -22,6 +22,7 @@
 .highlight-dracula .cs { color: #6272a4 } /* Comment.Special */
 .highlight-dracula .gd { color: #8b080b } /* Generic.Deleted */
 .highlight-dracula .ge { color: #f8f8f2; text-decoration: underline } /* Generic.Emph */
+.highlight-dracula .ges { color: #f8f8f2; text-decoration: underline } /* Generic.EmphStrong */
 .highlight-dracula .gr { color: #f8f8f2 } /* Generic.Error */
 .highlight-dracula .gh { color: #f8f8f2; font-weight: bold } /* Generic.Heading */
 .highlight-dracula .gi { color: #f8f8f2; font-weight: bold } /* Generic.Inserted */
