@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "wagtail-code-blocks"
+version = "0.1.0"
+description = "Wagtail Code Blocks"
+authors = ["Phillip Sitbon <phillip.sitbon@gmail.com>"]
+readme = "readme.md"
+packages = [{include = "code_blocks"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.4"
+wagtail = "^5.1.1"
+pygments = "^2.16.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
