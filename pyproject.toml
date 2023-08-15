@@ -1,10 +1,14 @@
 [tool.poetry]
 name = "wagtail-code-blocks"
-version = "0.1.0"
+version = "0.1.1"
 description = "Wagtail Code Blocks"
 authors = ["Phillip Sitbon <phillip.sitbon@gmail.com>"]
 readme = "readme.md"
-packages = [{include = "code_blocks"}]
+homepage = "https://github.com/sitbon/wagtail-code-blocks"
+
+packages = [
+    {include = "code_blocks"}
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
