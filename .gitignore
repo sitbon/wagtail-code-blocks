@@ -1,2 +1,7 @@
 .*
+!.gitkeep
+!.gitmodules
+
 dist/
+__pycache__/
+*.py[cod]

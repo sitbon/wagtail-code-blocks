@@ -1,17 +1,15 @@
+from pathlib import Path
 import sys
-import os
 
 from django.core.management.base import BaseCommand
 
 from pygments.cmdline import main as pygments_main
 from pygments.formatters import HtmlFormatter
 
-from ...util.pygments import defaults
+import code_blocks
+from code_blocks.util.pygments import defaults
 
-from ... import __path__ as __app_path__
-
-CSS_DIR = os.path.join(__app_path__[0], "static", "code_blocks", "css", "pygments")
-
+CSS_DIR = Path(code_blocks.__path__[0]) / "static" / "code_blocks" / "css" / "pygments"
 
 class Command(BaseCommand):
     help = "Generate pygments style css files."
@@ -26,7 +24,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options["list"]:
-            print("Available styles:")
             for style, name in defaults.CODE_BLOCK_PYGMENTS_STYLES.items():
                 print(name.ljust(20), style)
             return 0
@@ -36,16 +33,17 @@ class Command(BaseCommand):
         css_dir = CSS_DIR
 
         if options["dir"]:
-            css_dir = options["dir"]
+            css_dir = Path(options["dir"])
 
-            if not os.path.isdir(css_dir):
+            if not css_dir.exists():
                 print(f"Creating directory '{css_dir}'", file=sys.stderr)
-                os.makedirs(css_dir)
+                css_dir.mkdir(parents=True)
 
         if clean:
-            for file in os.listdir(CSS_DIR):
-                if file.endswith(".css"):
-                    os.remove(os.path.join(css_dir, file))
+            for file in css_dir.iterdir():
+                if file.suffix == ".css":
+                    print(f"Removing {file}", file=sys.stderr)
+                    file.unlink()
 
         styles = options["styles"] or defaults.CODE_BLOCK_PYGMENTS_STYLES
 
@@ -54,14 +52,15 @@ class Command(BaseCommand):
                 print(f"Invalid style '{style_name}'", file=sys.stderr)
                 continue
 
-            css_file_name = os.path.join(css_dir, f"{style_name}.css")
+            # css_file_name = os.path.join(css_dir, f"{style_name}.css")
+            css_file = css_dir / f"{style_name}.css"
 
-            if not replace and os.path.exists(css_file_name):
+            if not replace and css_file.exists():
                 print(f"Skipping {style_name} (already exists)", file=sys.stderr)
                 continue
 
-            with open(css_file_name, "w") as css_file:
-                sys.stdout = css_file
+            with css_file.open("w") as file:
+                sys.stdout = file
 
                 args = [
                     "pygmentize",
